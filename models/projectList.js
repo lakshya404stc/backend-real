@@ -5,6 +5,7 @@ const projectList = mongoose.Schema({
   headName: String,
   companyName: String,
   reraNumber: String,
+  totalBuilding:Number,
   mobileNumber: String,
   amenities: String,
   guideLineValue: String,
