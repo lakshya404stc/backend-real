@@ -66,13 +66,18 @@ const projectList = {
         const projectId = req.query.id;
         const updatedProject = req.body;
     
-        projectListModel.findByIdAndUpdate(projectId, updatedProject, { new: true }, (err, updatedProject) => {
-            if (err) {
-                console.error("Error updating project:", err);
-                return res.status(500).json({ error: "Error updating project" });
+        projectListModel.findByIdAndUpdate(
+            projectId,
+            { $set: updatedProject },
+            { new: true },
+            (err, updatedProject) => {
+                if (err) {
+                    console.error("Error updating project:", err);
+                    return res.status(500).json({ error: "Error updating project" });
+                }
+                res.status(200).json({ message: "Project updated successfully", project: updatedProject });
             }
-            res.status(200).json({ message: "Project updated successfully", project: updatedProject });
-        });
+        );
     },
 }
 
