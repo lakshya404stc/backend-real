@@ -84,12 +84,22 @@ const projectList = {
     }
   },
   updateProjectList: async (req, res) => {
-    const projectId = req.query.id;
-    const { updatedProject } = req.body;
+    try {
+        const projectId = req.query.id;
+        const { updatedProject } = req.body;
 
-    const updateProjectList = await projectListModel.findByIdAndUpdate({_id:projectId},updatedProject);
-    return res.status(200).send({message:"successfully updated",updateProjectList})
-  },
+        const updateProjectList = await projectListModel.findByIdAndUpdate(projectId, updatedProject, { new: true });
+
+        if (updateProjectList) {
+            return res.status(200).send({ message: "Successfully updated", updateProjectList });
+        } else {
+            return res.status(404).send({ message: "Project not found" });
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        return res.status(500).send({ message: "Something went wrong", error });
+    }
+},
 };
 
 module.exports = projectList;
