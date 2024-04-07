@@ -83,7 +83,7 @@ const customers = {
     },
     photoControler: async(req,res)=>{
         try {
-            const customer = await productModel.findById(req.params.pid).select("photo");
+            const customer = await customerModel.findById(req.params.pid).select("photo");
             if (customer.photo.data) {
               res.set("Content-type", customer.photo.contentType);
               return res.status(200).send(customer.photo.data);
@@ -99,7 +99,7 @@ const customers = {
     },
     getAllCustomers: async(req,res)=>{
         try {
-            const customers = await productModel.findAll({}).select("-photo")
+            const customers = await customerModel.findAll({}).select("-photo")
             if(customers){
                 return res.status(200).send({status:"true",customers})
             }
