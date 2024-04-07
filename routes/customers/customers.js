@@ -99,7 +99,7 @@ const customers = {
     },
     getAllCustomers: async(req,res)=>{
         try {
-            const customers = await customerModel.findAll({}).select("-photo")
+            const customers = await customerModel.find({}).select("-photo")
             if(customers){
                 return res.status(200).send({status:"true",customers})
             }
