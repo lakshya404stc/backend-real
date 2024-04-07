@@ -99,7 +99,7 @@ const customers = {
     },
     getAllCustomers: async(req,res)=>{
         try {
-            const customers = await productModel.findAll({}).select("-photo")
+            const customers = await productModel.findAll({}).select("-photo").populate('city')
             if(customers){
                 return res.status(200).send({status:"true",customers})
             }
