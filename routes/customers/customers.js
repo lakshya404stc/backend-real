@@ -107,21 +107,9 @@ const customers = {
             res.status(200).send({success:"false",messege:"no customers found"})
           }
     },
-    deleteCustomers: async(req,res)=>{
+    deleteCustomers: async (req, res) => {
         try {
-            const {customerId} = req.query
-            const deleteCustomers = await customerModel.findByIdAndDelete({_id:customerId})
-        } catch(error){
-            res.status(200).send({success:"false",messege:"no customers found"})
-        }
-    }
-}
-
- deleteCustomer: async (req, res) => {
-        try {
-            const customerId = req.params.cid;
-
-            // Find the customer by ID
+            const customerId = req.query.cid;
             const deletedCustomer = await customerModel.findByIdAndDelete(customerId);
 
             if (!deletedCustomer) {
@@ -134,6 +122,7 @@ const customers = {
             res.status(500).send({ success: false, message: "Something went wrong" });
         }
     }
+}
 
 
 
