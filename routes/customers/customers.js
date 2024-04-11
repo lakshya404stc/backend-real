@@ -110,6 +110,23 @@ const customers = {
     }
 }
 
+ deleteCustomer: async (req, res) => {
+        try {
+            const customerId = req.params.cid;
+
+            // Find the customer by ID
+            const deletedCustomer = await customerModel.findByIdAndDelete(customerId);
+
+            if (!deletedCustomer) {
+                return res.status(404).send({ success: false, message: "Customer not found" });
+            }
+
+            res.status(200).send({ success: true, message: "Customer deleted successfully" });
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({ success: false, message: "Something went wrong" });
+        }
+    }
 
 
 
