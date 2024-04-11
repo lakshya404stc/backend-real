@@ -6,6 +6,7 @@ const router = express.Router();
 router.post("/register",formidable(),customers.registerCustomers)
 router.get("/getallcustomers",customers.getAllCustomers)
 router.get("/customer-photo/:pid",customers.photoControler);
-router.put("/editcustomer/:cid",formidable(),customers.updateCustomer)
+router.put("/editcustomer",formidable(),customers.updateCustomer)
+router.put("/deletecustomer/",customers.deleteCustomers)
 
 module.exports = router

@@ -27,7 +27,7 @@ const customers = {
     },
     updateCustomer: async(req,res)=>{
         try {
-            const customerId = req.params.cid;
+            const customerId = req.query.cid;
             const {
                 fullName,
                 mobileNumber,
@@ -104,9 +104,16 @@ const customers = {
                 return res.status(200).send({status:"true",customers})
             }
           } catch (error) {
-            console.log(error)
             res.status(200).send({success:"false",messege:"no customers found"})
           }
+    },
+    deleteCustomers: async(req,res)=>{
+        try {
+            const {customerId} = req.query
+            const deleteCustomers = await customerModel.findByIdAndDelete({_id:customerId})
+        } catch(error){
+            res.status(200).send({success:"false",messege:"no customers found"})
+        }
     }
 }
 
