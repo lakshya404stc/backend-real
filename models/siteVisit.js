@@ -27,4 +27,4 @@ const siteVisitModel = mongoose.Schema({
     reference:Object
 })
 
-module.exports = mongoose.Model("siteVisitModel",siteVisitModel)
+module.exports = mongoose.model("siteVisitModel",siteVisitModel)

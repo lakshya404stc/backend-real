@@ -2,11 +2,11 @@ const express = require('express');
 const siteVisits = require("./siteVisits")
 const router = express.Router();
 
-router.post('/create-siteViits', siteVisits.createsiteVisits);
-router.get('/get-siteVisits', siteVisits.getAllsiteVisits);
-router.get('/get-single-siteVisit', siteVisits.getSinglesiteVisits);
-router.post('/update-siteVisit', siteVisits.updatesiteVisits);
-router.get('/delete-siteVisit', siteVisits.deletesiteVisits);
+router.post('/create-siteViits', siteVisits.createSiteVisit);
+router.get('/get-siteVisits', siteVisits.getAllSiteVisit);
+router.get('/get-single-siteVisit', siteVisits.getSingleSiteVisit);
+router.post('/update-siteVisit', siteVisits.updateSiteVisit);
+router.get('/delete-siteVisit', siteVisits.deleteSiteVisit);
 
 
 module.exports = router

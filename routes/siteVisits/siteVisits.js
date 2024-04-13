@@ -13,7 +13,7 @@ const siteVisits = {
         }
     },
 
-    getAllSiteVisits: async (req, res) => {
+    getAllSiteVisit: async (req, res) => {
         try {
             const siteVisits = await SiteVisitModel.find().populate('lead').populate('projects').populate('siteVisitedBy');
             res.json(siteVisits);
