@@ -121,7 +121,7 @@ const customers = {
             console.log(error);
             res.status(500).send({ success: false, message: "Something went wrong" });
         }
-    }
+    },
 }
 
 
