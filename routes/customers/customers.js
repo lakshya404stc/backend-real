@@ -109,7 +109,7 @@ const customers = {
     },
     deleteCustomers: async (req, res) => {
         try {
-            const customerId = req.query.cid;
+            const customerId = req.query.id;
             const deletedCustomer = await customerModel.findByIdAndDelete(customerId);
 
             if (!deletedCustomer) {
