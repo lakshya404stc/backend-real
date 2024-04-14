@@ -1,26 +1,36 @@
 const mongoose = require("mongoose");
 
 const leadsSchema = mongoose.Schema({
-  sourceOfLeads: String,
-  leadName: String,
-  mobileNumber: Number,
-  WhatsappNumber: Number,
-  address: String,
-  projects: [{ 
+  sourceOfLeads: {
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: "leadSourceType" 
+},
+  leadName: {
+    
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: "customer" 
+  
+  },
+  projects:{
     type: mongoose.Schema.Types.ObjectId, 
     ref: "projectList" 
-}],
-  intrestedIn: String,
+},
+  intrestedIn:{
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: "flatType" 
+},
   budgetUpto: String,
-  AssignTo: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-  },
+  AssignTo: String,
+  AssignTomobileNumber:String,
   leadRemark: String,
-  visitInquiryStatus: String,
+  visitInquiryStatus: {
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: "inquiyStatus" 
+},
   visitPlanDate: String,
   visitFollowupRemark: String,
-  reference: Object,
+  referenceName: String,
+  referencePhone: Number,
 });
 
 module.exports = mongoose.model("leadsModel", leadsSchema);

@@ -15,7 +15,7 @@ const leads = {
 
     getAllLeads: async (req, res) => {
         try {
-            const leads = await LeadsModel.find().populate('projects').populate('AssignTo');
+            const leads = await LeadsModel.find().populate({ path: 'leadName', select: '-photo' }).populate('sourceOfLeads').populate('projects').populate('intrestedIn').populate('visitInquiryStatus');
             res.json(leads);
         } catch (error) {
             res.status(500).json({ error: error.message });
@@ -25,7 +25,7 @@ const leads = {
     getSingleLead: async (req, res) => {
         try {
             const { id } = req.query;
-            const lead = await LeadsModel.findById(id).populate('projects').populate('AssignTo');
+            const lead = await LeadsModel.findById(id).populate('sourceOfLeads').populate('projects').populate('intrestedIn').populate('visitInquiryStatus');
             if (!lead) {
                 return res.status(404).json({ message: "Lead not found" });
             }
