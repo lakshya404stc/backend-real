@@ -116,7 +116,9 @@ const projectList = {
         return res.status(404).json({ message: "Project not found" });
       }
 
-      project.buildingList.push(buildingData);
+      buildingData.forEach(item=>{
+        project.buildingList.push(item);
+      })
       await project.save();
 
       res.status(201).json({ message: "Building created successfully" });
@@ -135,7 +137,7 @@ const projectList = {
 
       if (!project) {
         return res.status(404).json({ message: "Project not found" });
-      }
+      } 
 
       const building = project.buildingList.find(b => b.buildingName === buildingName);
 
@@ -302,7 +304,9 @@ const projectList = {
         return res.status(404).json({ message: "Project not found" });
       }
 
-      project.plotList.push(plotData);
+      plotData.forEach(item=>{
+        project.plotList.push(item);
+      })
       await project.save();
 
       res.status(201).json({ message: "Building created successfully" });
@@ -342,17 +346,16 @@ const projectList = {
       const projectId = req.body.projectId;
       const rowHouseData = req.body.rowHouseData;
 
-      // Find the project by ID
       const project = await projectListModel.findById(projectId);
 
       if (!project) {
         return res.status(404).json({ message: "Project not found" });
       }
 
-      // Add the new row house to the row house list
-      project.rowHouseList.push(rowHouseData);
-
-      // Save the updated project
+      rowHouseData.forEach(item=>{
+        project.rowHouseList.push(item);
+      })
+      
       await project.save();
 
       res.status(201).json({ message: "Row house created successfully" });
@@ -396,9 +399,12 @@ const projectList = {
         return res.status(404).json({ message: "Project not found" });
       }
 
-      project.farmLandList.push(farmLandData);
-      await project.save();
+      farmLandData.forEach(item=>{
+        project.farmLandList.push(item);
+      })
 
+      await project.save();
+      
       res.status(201).json({ message: "Farm land created successfully" });
     } catch (error) {
       res.status(500).json({ error: "Failed to create farm land", details: error.message });
